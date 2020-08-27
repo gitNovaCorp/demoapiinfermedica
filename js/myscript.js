@@ -11,7 +11,14 @@ const re = []
 $(document).ready(() => {
 
     let URLactual = window.location
-    
+
+    function getParameterByName(name) {
+        name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+        var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+            results = regex.exec(URLactual.search);
+        return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+    }
+
     $("#wrapped").submit((e) => {
 
         e.preventDefault();
@@ -19,21 +26,21 @@ $(document).ready(() => {
         const items = $("input[type='radio']:checked").length
         const inputsValue = $("input[type='radio']:checked")
         let inputAll = $("input[type='radio']")
-        
+
         let type = $(`#pag${pag}`).attr('class')
 
 
         if (type === 'group_multiple') {
-            
+
             let ainputs = []
             let binputs = []
-            
+
             let inputs = $(`#items${pag}  input[type='radio']`)
 
             inputs.each(function() {
-                ainputs.push($(this).attr('id'))                
+                ainputs.push($(this).attr('id'))
             })
-            
+
             let sinRepetidos = ainputs.filter(function(valor, indiceActual, arreglo) {
                 let indiceAlBuscar = arreglo.indexOf(valor);
                 if (indiceActual === indiceAlBuscar) {
@@ -49,74 +56,74 @@ $(document).ready(() => {
             })
 
 
-           
+
             $(`#items${pag}  input[type='radio']:checked`).each(function() {
-                binputs.push($(this).attr('name')) 
-          
+                binputs.push($(this).attr('name'))
+
             })
 
             let array = []
             for (var i = 0; i < sinRepetidos.length; i++) {
                 var igual=false
                 for (var j = 0; j < binputs.length & !igual; j++) {
-                    if(sinRepetidos[i] == binputs[j] ) 
-                            igual=true
+                    if(sinRepetidos[i] == binputs[j] )
+                        igual=true
                 }
                 if(!igual)array.push(sinRepetidos[i])
-                
+
             }
             //alert('Falta la pregunta id: '+array)
             //console.log(JSON.stringify(array))
-            
+
             if(array.length > 0)
             {
-                
+
                 //$(`#items${pag}`).addClass('alert')
 
                 for(let v = 0; v < array.length ; v++)
                 {
                     $(`.${array[v]}`).addClass('alert')
 
-                    
-                    console.log('*****************************************************')
-                    console.log(array[v])
-                    console.log('*****************************************************')
+
+                    //console.log('*****************************************************')
+                    //console.log(array[v])
+                    //console.log('*****************************************************')
                 }
                 return false
-                
+
             } else {
                 $(`#items${pag}`).removeClass('alert');
-                
+
             }
 
-            console.log(JSON.stringify(sinRepetidos, null, '\t'))
-            console.log(JSON.stringify(binputs, null, '\t'))
-           
+            //console.log(JSON.stringify(sinRepetidos, null, '\t'))
+            //console.log(JSON.stringify(binputs, null, '\t'))
 
-           
+
+
         }
 
         if (type === 'group_single') {
             x++
-            if($(`#pag${pag} input[type='radio']`).is(':checked')) {  
-                 
+            if($(`#pag${pag} input[type='radio']`).is(':checked')) {
+
             } else {
                 $(`#items${pag}`).addClass('alert')
                 $(`.message${pag}`).html('Los campos son requeridos')
-                return false  
-            }  
+                return false
+            }
         }
 
         if (type === 'single') {
-            
-            if($(`#pag${pag} input[type='radio']`).is(':checked')) {  
-                 
-            } else { 
-                
+
+            if($(`#pag${pag} input[type='radio']`).is(':checked')) {
+
+            } else {
+
                 $(`#items${pag}`).addClass('alert')
                 $(`.message${pag}`).html('Los campos son requeridos')
                 return false
-            }  
+            }
 
         }
 
@@ -127,7 +134,7 @@ $(document).ready(() => {
             for (let i = 0; i < items; i++) {
 
                 let id = inputsValue[i].id;
-                console.log(inputsValue[i].id)
+                //console.log(inputsValue[i].id)
 
                 evidence.push({
                     id,
@@ -138,7 +145,7 @@ $(document).ready(() => {
             evidence.shift()
         }
 
-       
+
         adelante()
         handleInfo(evidence)
 
@@ -166,7 +173,7 @@ $(document).ready(() => {
 
             $('#pag' + (pag)).remove()
 
-                --pag
+            --pag
             $('#pag' + (pag)).show()
 
         }
@@ -205,8 +212,8 @@ $(document).ready(() => {
 
         $.ajax(settings).then(res => {
 
-            console.log(res)
-  
+            //console.log(res)
+
             if (res.should_stop != undefined && !res.should_stop) {
 
                 res.question.items.forEach(e => {
@@ -234,8 +241,8 @@ $(document).ready(() => {
 
             } else {
 
-                console.log(evidence)
-               
+                //console.log(evidence)
+
                 let datose = []
 
                 evidence.forEach(m => {
@@ -256,29 +263,35 @@ $(document).ready(() => {
                 })
 
                 let obj = {}
-                
+
                 datose = datose.filter(o => obj[o.id] ? false : obj[o.id] = true)
 
                 let result = {
-                    'llave': `${URLactual}`,
+                    'key': `${getParameterByName('key')}`,
                     'age': data.age,
                     'sex': data.sex,
                     'evidence': datose
                 }
 
-                console.log(result)
+                const finalResult = {};
+                Object.keys(result)
+                    .forEach(key => finalResult[key] = result[key]);
+                Object.keys(res)
+                    .forEach(key => finalResult[key] = res[key]);
+
+                console.log("Resultado: " + JSON.stringify(finalResult,null, '\t'))
 
                 $.ajax({
                     url: "https://acielcolombia.com:86/test/",
                     data:result,
                     type:"POST",
                     success: function(response){
-                        console.log(JSON.stringify(response));
-                        
+                        console.log(JSON.stringify("response " + response));
+
                     }
                 })
 
-                viewMessage(res, data)
+                viewMessage(res, data, finalResult)
 
             }
 
@@ -358,7 +371,7 @@ $(document).ready(() => {
 
                     e.choices.forEach(data => {
                         options.push(data.id);
-                        console.log(options)
+                        //console.log(options)
                     });
 
                     $(`#items${pag}`).append(`
@@ -382,7 +395,7 @@ $(document).ready(() => {
         }
     }
 
-    const viewMessage = (res, data) => {
+    const viewMessage = (res, data, finalResult) => {
 
         $("#middle-wizard").append(`
         
@@ -404,6 +417,10 @@ $(document).ready(() => {
                     <br>
                     <div style="border:1px solid red"> 
                         <p style="font-size:12px; color: red;">Response : ${JSON.stringify(res, null, '\t')}</p>
+                    </div>
+                    <br>
+                    <div style="border:1px solid black"> 
+                        <p style="font-size:12px; color: black;">FinalResult : ${JSON.stringify(finalResult, null, '\t')}</p>
                     </div>
                 </div>
             </div>`)
