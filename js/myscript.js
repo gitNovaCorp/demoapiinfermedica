@@ -281,15 +281,38 @@ $(document).ready(() => {
 
                 console.log("Resultado: " + JSON.stringify(finalResult,null, '\t'))
 
-                $.ajax({
-                    url: "https://acielcolombia.com:86/test/",
-                    data:result,
-                    type:"POST",
+                var settingsSingapur = {
+                    "url": "https://hippocrates.staging.botmd.io/colombia/submission_webhook",
+                    "method": "POST",
+                    "timeout": 0,
+                    "headers": {
+                        "Content-Type": "application/json"
+                    },
+                    "data": JSON.stringify(finalResult,null, '\t'),
+                };
+
+                $.ajax(settingsSingapur).done(function (response) {
+                    console.log(response);
+                });
+
+                $.ajax(settingsSingapur).fail(function (error) {
+                    console.log(error);
+                });
+
+                /*$.ajax({
+                    url: "https://hippocrates.staging.botmd.io/colombia/submission_webhook",
+                    method: "POST",
+                    timeout: 0,
+                    headers: {
+                        "X_API_KEY": "c3bZDHsJRyI2xsGwvyxO5mY5yXO0HNiy",
+                        "": "",
+                        "Content-Type": "application/json"
+                    },
+                    data: JSON.stringify(finalResult,null, '\t'),
                     success: function(response){
                         console.log(JSON.stringify("response " + response));
-
                     }
-                })
+                })*/
 
                 viewMessage(res, data, finalResult)
 
