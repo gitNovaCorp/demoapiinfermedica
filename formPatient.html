@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <meta name="description" content="Cuestionario Coronavirus"/>
+
+    <title>Diagnóstico medico</title>
+   
+    <!-- Google web font -->
+	<link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet"/>   
+    <!-- Base css -->
+    <link href="css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="css/menu.css" rel="stylesheet"/>
+    <link href="css/style.css" rel="stylesheet"/>
+    <link href="css/vendors.css" rel="stylesheet"/>
+    <!-- Your custom css -->
+    <link href="css/custom.css" rel="stylesheet">
+</head>
+
+<body style="overflow: visible;">   
+    <nav class="navbar navbar-dark bg-primary" style="background-color: #2955a9 !important">
+        <h4 class="navbar-brand text-white">Diagnóstico médico</h4>
+    </nav>
+    <main class="py-4">        
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="card">                        
+                        <div class="card-header text-white" 
+                            style="background-color: #2955a9 !important">Información del paciente
+                        </div>
+                        <div class="card-body">
+                            <form id="PatientData">
+                                <div class="form-group">
+                                    <label for="tipDoc">Tipo de documento</label>
+                                    <select class="form-control form-control-sm" name="tipDoc" id="tipDoc">
+                                        <option></option>
+                                        <option value="RC">Registro civil</option>
+                                        <option value="TI">Tarjeta de identidad</option>
+                                        <option value="CC">Cédula de ciudadanía</option>
+                                        <option value="CE">Cédula de extranjería</option>
+                                        <option value="PA">Pasaporte</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="numDoc">Número de documento</label>
+                                    <input class="form-control form-control-sm" type="text"  name="numDoc" id="numDoc">
+                                </div>
+                                <div class="form-group">
+                                    <label for="fName" class="fl-label">Primer Nombre</label>
+                                    <input class="form-control form-control-sm" type="text" id="fName" name="fName">                                    
+                                </div>
+                                <div class="form-group">
+                                    <label for="sName" class="fl-label">Segundo Nombre</label>
+                                    <input class="form-control form-control-sm" type="text" id="sName" name="sName">
+                                </div>   
+                                <div class="form-group">
+                                    <label for="fLastName" class="fl-label">Primer Apellido</label>
+                                    <input class="form-control form-control-sm" type="text" id="fLastName" name="fLastName">
+                                </div>   
+                                <div class="form-group">
+                                    <label for="sLastName" class="fl-label">Segundo Apellido</label>
+                                    <input class="form-control form-control-sm" type="text" id="sLastName" name="sLastName">
+                                </div>   
+                                <div class="form-group">
+                                    <label for="birthDate" class="fl-label">Fecha de Nacimiento</label>
+                                    <input class="form-control form-control-sm" type="date" id="birthDate" name="birthDate">
+                                </div>   
+                                <div class="form-group">
+                                    <label for="email" class="fl-label">Correo</label>
+                                    <input class="form-control form-control-sm" type="email" id="email" name="email">
+                                </div>   
+                                <div class="form-group">
+                                    <label for="tel" class="fl-label">Teléfono</label>
+                                    <input class="form-control form-control-sm" type="tel" id="tel" name="tel">
+                                </div>  
+                                <div class="form-group">
+                                    <label for="tel" class="fl-label">Celular</label>
+                                    <input class="form-control form-control-sm" type="tel" id="tel" name="tel">
+                                </div>  
+                                <div class="form-group">
+                                    <label for="tipDoc">EPS (Aseguradora)</label>
+                                    <select class="form-control form-control-sm" name="eps" id="eps">
+                                        <option></option>
+                                        <option value="NuevaEPS">NuevaEPS</option>
+                                        <option value="Compensar">Compensar</option>
+                                        <option value="AlianSalud">AlianSalud</option>
+                                        <option value="CapitalSalud">CapitalSalud</option>
+                                        <option value="Coomeva">Coomeva</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="regime">Régimen</label>
+                                    <select class="form-control form-control-sm" name="regime" id="regime">
+                                        <option></option>
+                                        <option value="Contributivo">Contributivo</option>
+                                        <option value="Subsidiado">Subsidiado</option>
+                                        <option value="Excepción">Excepción</option>
+                                        <option value="SinDefinir">Sin Definir</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="country" class="fl-label">País</label>
+                                    <input class="form-control form-control-sm" type="text" id="country" name="country">                                    
+                                </div>
+                                <div class="form-group">
+                                    <label for="department" class="fl-label">Departamento</label>
+                                    <input class="form-control form-control-sm" type="text" id="department" name="department">
+                                </div>   
+                                <div class="form-group">
+                                    <label for="municipality" class="fl-label">Municipio</label>
+                                    <input class="form-control form-control-sm" type="text" id="municipality" name="municipality">
+                                </div> 
+                                <div class="form-group">
+                                    <label for="distric" class="fl-label">Distrito</label>
+                                    <input class="form-control form-control-sm" type="text" id="distric" name="distric">
+                                </div> 
+                                <div class="form-group">
+                                    <input class="btn btn-primary float-right pull-right" 
+                                            style="background-color: #2955a9 !important" id="btn-api" type="submit" value="Enviar"/>
+                                </div>                   
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

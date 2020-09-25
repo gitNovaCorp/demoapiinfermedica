@@ -421,32 +421,33 @@ $(document).ready(() => {
     const viewMessage = (res, data, finalResult) => {
 
         $("#middle-wizard").append(`
-        
-            <div id="pag${pag}"><div class="step wizard-step">
-            
+            <div id="pag${pag}">
+            <div class="step wizard-step">         
                 <h4 class="main_question" id="title"><h4>${res.label}</h4><br><br>
-                
                 <div class="row">
                     <div class="col-lg-12 col-md-12 col-sm-12 col-12">
-                    <p>${res.description}</p>
-                        <div id="alarmas${pag}">
-                        </div>
-                    </div>
-                    </div>
-                    <br>
-                    <div style="border:1px solid blue"> 
-                        <p style="font-size:12px; color: blue;">Request : ${JSON.stringify(data, null, '\t')}</p>
-                    </div>
-                    <br>
-                    <div style="border:1px solid red"> 
-                        <p style="font-size:12px; color: red;">Response : ${JSON.stringify(res, null, '\t')}</p>
-                    </div>
-                    <br>
-                    <div style="border:1px solid black"> 
-                        <p style="font-size:12px; color: black;">FinalResult : ${JSON.stringify(finalResult, null, '\t')}</p>
+                        <p>${res.description}</p>
+                            <div id="alarmas${pag}"></div>
                     </div>
                 </div>
-            </div>`)
+                <!--<br>
+                <div style="border:1px solid blue"> 
+                    <p style="font-size:12px; color: blue;">Request : ${JSON.stringify(data, null, '\t')}</p>
+                </div>
+                <br>
+                <div style="border:1px solid red"> 
+                    <p style="font-size:12px; color: red;">Response : ${JSON.stringify(res, null, '\t')}</p>
+                </div>
+                <br>
+                <div style="border:1px solid black"> 
+                    <p style="font-size:12px; color: black;">FinalResult : ${JSON.stringify(finalResult, null, '\t')}</p>
+                </div>-->                
+            </div>
+            <br>
+            <input type="button" class="btn btn-success btn-sm float-right" 
+                        onclick="location.href='https://wa.me/573173923784';" 
+                        value="Volver a WhatsApp"/>
+        </div>`)
 
         if (res.serious.length > 0) {
 

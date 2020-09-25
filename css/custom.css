@@ -7,16 +7,10 @@ body {
 }
 
 .alert {
-<<<<<<< HEAD
 	
 	background-color: #fdf1f1;
 	margin : 0 auto;
 	padding: 0;
-=======
-	margin: 10px;
-	background-color: #fdf1f1;
-	position: relative;
->>>>>>> 09f9f7baa473484cb562f8cd510f85ba36099a44
 }
 
 
